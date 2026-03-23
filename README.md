@@ -14,6 +14,7 @@ claude plugin add /path/to/samurai-skills
 | Skill | Description |
 |-------|-------------|
 | `aidbox` | Aidbox FHIR platform — API, configuration, access control, terminology |
+| `aidbox-sql-on-fhir` | SQL on FHIR with Aidbox — ViewDefinitions, $materialize, sof schema |
 
 ## Creating a new skill
 
@@ -23,8 +24,10 @@ Use `template/SKILL.md` as a starting point. Each skill is a folder under `skill
 
 ```
 skills/
-├── aidbox/           # Aidbox FHIR platform
+├── aidbox/              # Aidbox FHIR platform
 │   ├── SKILL.md
-│   └── references/   # On-demand reference docs
+│   └── references/      # On-demand reference docs
+├── aidbox-sql-on-fhir/  # SQL on FHIR ViewDefinitions & analytics
+│   └── SKILL.md
 └── ...
 ```
