@@ -1,14 +1,29 @@
 {
+  "name": "samurai-skills",
+  "owner": {
+    "name": "Health Samurai"
+  },
+  "metadata": {
+    "description": "Health Samurai skills for Claude Code — FHIR, Aidbox, and more"
+  },
   "plugins": [
     {
       "name": "aidbox",
       "description": "Aidbox FHIR platform — API reference, configuration, access control, and development guidance",
-      "skills": ["aidbox"]
+      "source": "./skills/aidbox",
+      "strict": false
     },
     {
-      "name": "health-samurai-all",
-      "description": "All Health Samurai skills",
-      "skills": ["aidbox"]
+      "name": "aidbox-sql-on-fhir",
+      "description": "Aidbox SQL on FHIR — ViewDefinition creation and management",
+      "source": "./skills/aidbox-sql-on-fhir",
+      "strict": false
+    },
+    {
+      "name": "atomic-generate-types",
+      "description": "Generate FHIR types using @atomic-ehr/codegen — supports TypeScript, Python, and C#",
+      "source": "./skills/atomic-generate-types",
+      "strict": false
     }
   ]
 }
