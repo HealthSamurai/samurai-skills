@@ -24,6 +24,12 @@
       "description": "Generate FHIR types using @atomic-ehr/codegen — supports TypeScript, Python, and C#",
       "source": "./skills/atomic-generate-types",
       "strict": false
+    },
+    {
+      "name": "hs-search",
+      "description": "Search health-samurai.io — docs, blog, case studies, examples. Find information about Aidbox, FHIR, and Health Samurai products",
+      "source": "./skills/hs-search",
+      "strict": false
     }
   ]
 }

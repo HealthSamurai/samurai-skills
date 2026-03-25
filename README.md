@@ -15,6 +15,7 @@ claude plugin add /path/to/samurai-skills
 |-------|-------------|
 | `aidbox` | Aidbox FHIR platform — API, configuration, access control, terminology |
 | `aidbox-sql-on-fhir` | SQL on FHIR with Aidbox — ViewDefinitions, $materialize, sof schema |
+| `hs-search` | Search health-samurai.io — docs, blog, case studies, examples |
 
 ## Creating a new skill
 
