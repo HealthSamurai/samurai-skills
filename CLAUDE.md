@@ -4,17 +4,26 @@ Claude Code plugin marketplace by Health Samurai. Contains skills for Aidbox, FH
 
 ## Structure
 
-This repo is a **marketplace** (`.claude-plugin/marketplace.json`) containing one **plugin** (`plugins/samurai-skills/`) with multiple skills inside.
+This repo is a **marketplace** (`.claude-plugin/marketplace.json`) containing individual plugins (one per skill) and a bundled plugin (`samurai-skills`) that includes all skills.
 
 ```
 .claude-plugin/marketplace.json        — marketplace catalog
-plugins/samurai-skills/
-├── .claude-plugin/plugin.json         — plugin manifest (name, version)
-└── skills/                            — auto-discovered by Claude Code
-    ├── aidbox/SKILL.md
-    ├── aidbox-sql-on-fhir/SKILL.md
-    ├── atomic-generate-types/SKILL.md
-    └── hs-search/SKILL.md
+plugins/
+├── samurai-skills/                    — bundled plugin (all skills)
+│   ├── .claude-plugin/plugin.json
+│   └── skills/
+├── aidbox/                            — individual plugin
+│   ├── .claude-plugin/plugin.json
+│   └── skills/aidbox/SKILL.md
+├── aidbox-sql-on-fhir/
+│   ├── .claude-plugin/plugin.json
+│   └── skills/aidbox-sql-on-fhir/SKILL.md
+├── atomic-generate-types/
+│   ├── .claude-plugin/plugin.json
+│   └── skills/atomic-generate-types/SKILL.md
+└── hs-search/
+    ├── .claude-plugin/plugin.json
+    └── skills/hs-search/SKILL.md
 ```
 
 ## Version bumps
@@ -39,6 +48,15 @@ Then invoke with `/samurai-skills:<skill-name>`.
 ## Installation (for users)
 
 ```bash
+# Add the marketplace
 claude plugin marketplace add HealthSamurai/samurai-skills
+
+# Install all skills at once
 claude plugin install samurai-skills@samurai-skills
+
+# Or install individual skills
+claude plugin install aidbox@samurai-skills
+claude plugin install aidbox-sql-on-fhir@samurai-skills
+claude plugin install atomic-generate-types@samurai-skills
+claude plugin install hs-search@samurai-skills
 ```
