@@ -9,8 +9,28 @@
   "plugins": [
     {
       "name": "samurai-skills",
-      "description": "Health Samurai skills — Aidbox, FHIR, SQL on FHIR, and more",
+      "description": "All Health Samurai skills — Aidbox, FHIR, SQL on FHIR, and more",
       "source": "./plugins/samurai-skills"
+    },
+    {
+      "name": "aidbox",
+      "description": "Aidbox FHIR platform — API reference, configuration, access control, and development guidance",
+      "source": "./plugins/aidbox"
+    },
+    {
+      "name": "aidbox-sql-on-fhir",
+      "description": "SQL on FHIR with Aidbox — ViewDefinitions, $materialize, sof schema",
+      "source": "./plugins/aidbox-sql-on-fhir"
+    },
+    {
+      "name": "atomic-generate-types",
+      "description": "Generate FHIR types using @atomic-ehr/codegen — supports TypeScript, Python, and C#",
+      "source": "./plugins/atomic-generate-types"
+    },
+    {
+      "name": "hs-search",
+      "description": "Search health-samurai.io — docs, blog, case studies, examples",
+      "source": "./plugins/hs-search"
     }
   ]
 }
