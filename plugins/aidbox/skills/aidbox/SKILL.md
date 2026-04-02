@@ -377,7 +377,7 @@ POST /fhir/ConceptMap/$translate
 Install (ESM-only package):
 
 ```bash
-npm install @health-samurai/aidbox-client@^0.0.0-alpha.5
+npm install @health-samurai/aidbox-client@alpha
 ```
 
 ### Initialization
