@@ -1,28 +1,38 @@
 # Health Samurai Skills
 
-Claude Code plugin with skills for Health Samurai products and healthcare development.
+Health Samurai skills for Aidbox, FHIR, and healthcare development.
 
 ## Installation
 
-Add the marketplace:
+Install all skills:
 
 ```bash
-claude plugin marketplace add HealthSamurai/samurai-skills
+npx skills add HealthSamurai/samurai-skills
 ```
 
-Install all skills at once:
+Install a specific skill by name:
 
 ```bash
-claude plugin install samurai-skills@samurai-skills
+npx skills add HealthSamurai/samurai-skills --skill aidbox
+npx skills add HealthSamurai/samurai-skills --skill aidbox-sql-on-fhir
+npx skills add HealthSamurai/samurai-skills --skill atomic-generate-types
+npx skills add HealthSamurai/samurai-skills --skill hs-search
 ```
 
-Or install individual skills:
+Install globally instead of per-project:
+
+```bash
+npx skills add HealthSamurai/samurai-skills -g
+```
+
+If you still use the Claude Code plugin marketplace directly, use the in-app commands:
 
 ```bash
 claude plugin install aidbox@samurai-skills
 claude plugin install aidbox-sql-on-fhir@samurai-skills
 claude plugin install atomic-generate-types@samurai-skills
 claude plugin install hs-search@samurai-skills
+
 ```
 
 ## Skills
