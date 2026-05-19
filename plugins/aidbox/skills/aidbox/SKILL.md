@@ -344,6 +344,81 @@ Content-Type: text/yaml
 
 Or via `/$psql` for interactive queries. Tables follow naming: resource type in lowercase (e.g., `patient`, `observation`). Resource stored in `resource` JSONB column.
 
+### Database Schema
+
+Every FHIR resource type maps to a PostgreSQL table (lowercase name, e.g., `patient`, `observation`). Each table has these columns:
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id` | text (PK) | Resource ID |
+| `txid` | bigint | Global monotonic transaction ID from `transaction_id_seq` |
+| `ts` | timestamptz | Last updated |
+| `cts` | timestamptz | Created |
+| `status` | resource_status | `created`, `updated`, or `deleted` |
+| `resource` | jsonb | FHIR resource body (without `id`, `resourceType`, `meta`) |
+
+Each resource type also has a `<type>_history` table with the same schema, storing all previous versions.
+
+The `txid` sequence is shared across all tables — it provides a global ordering of all writes. This is the basis for the Changes API and ETag support.
+
+### Changes API
+
+Poll for resource changes efficiently using the Changes API:
+
+```http
+GET /<ResourceType>/$changes?version=<last_txid>
+```
+
+- Returns all changes since the given version (txid)
+- Returns **304 Not Modified** if nothing changed (cheap polling)
+- Add `omit-resources=true` to get only IDs without full resource bodies
+- For performance on frequently polled tables, add a `btree(txid)` index
+
+```bash
+# Get changes since last known version
+curl -s -u "<client>:<secret>" "http://localhost:<port>/Encounter/$changes?version=12345"
+
+# Lightweight poll — IDs only
+curl -s -u "<client>:<secret>" "http://localhost:<port>/Encounter/$changes?version=12345&omit-resources=true"
+```
+
+Note: the Changes API uses the native endpoint (no `/fhir/` prefix).
+
+### AidboxTrigger (v2505+, alpha)
+
+AidboxTrigger executes SQL within the same PostgreSQL transaction as a FHIR write. This enables real-time denormalization without polling or background jobs.
+
+```json
+{
+  "resourceType": "AidboxTrigger",
+  "id": "encounter-to-flat",
+  "action": ["create", "update", "delete"],
+  "resource": "Encounter",
+  "sql": "INSERT INTO encounter_flat (id, period_start, subject_id) SELECT e.id, e.resource->>'periodStart', e.resource->'subject'->>'id' FROM encounter e WHERE e.id = '{{id}}' ON CONFLICT (id) DO UPDATE SET period_start = EXCLUDED.period_start, subject_id = EXCLUDED.subject_id"
+}
+```
+
+Key constraints:
+- Only `INSERT`, `UPDATE`, `DELETE` SQL statements are allowed (no `SELECT`-only)
+- Use `{{id}}` as a template variable for the affected resource's ID
+- Requires FHIR Schema mode to be enabled
+- The trigger SQL executes in the same transaction — if it fails, the FHIR write rolls back
+
+### Batch Upsert
+
+For bulk updates without the overhead of transaction bundles, use the batch upsert endpoint:
+
+```bash
+curl -s -u "<client>:<secret>" -X PUT "http://localhost:<port>/" \
+  -H "Content-Type: application/json" \
+  -d '[
+    {"resourceType": "Patient", "id": "pt-1", "name": [{"family": "Smith"}]},
+    {"resourceType": "Patient", "id": "pt-2", "name": [{"family": "Jones"}]}
+  ]'
+```
+
+This accepts an array of resources and upserts them. It is a lightweight alternative to FHIR transaction bundles when you need to create or update multiple resources.
+
 ### Subscriptions (Topic-Based)
 
 ```json
