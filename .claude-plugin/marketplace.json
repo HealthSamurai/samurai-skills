@@ -31,6 +31,11 @@
       "name": "hs-search",
       "description": "Search health-samurai.io — docs, blog, case studies, examples",
       "source": "./plugins/hs-search"
+    },
+    {
+      "name": "aidbox-ig-development",
+      "description": "FHIR Implementation Guide development — testing, validation, and publishing with Aidbox",
+      "source": "./plugins/aidbox-ig-development"
     }
   ]
 }
