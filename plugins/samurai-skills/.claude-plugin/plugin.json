@@ -1,7 +1,7 @@
 {
   "name": "samurai-skills",
   "description": "Health Samurai skills for Claude Code — Aidbox, FHIR, SQL on FHIR, Termbox, and more",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "author": {
     "name": "Health Samurai",
     "url": "https://health-samurai.io"

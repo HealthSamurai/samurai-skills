@@ -42,11 +42,7 @@ After changing any SKILL.md, bump `version` in `plugins/samurai-skills/.claude-p
 
 ## Termbox skill
 
-`termbox/references/*.md` are copies of the Termbox agent prompts and MCP page, which are maintained in the `termbox-docs` repo. Don't edit them here. After the docs change, refresh both copies and bump the versions:
-
-```bash
-python3 scripts/sync_termbox_skill.py
-```
+The Termbox agent prompts live only here, in `termbox/references/*.md`; the Termbox docs just explain how to install and use the skill. Keep the two copies, under `plugins/termbox/` and `plugins/samurai-skills/`, identical.
 
 ## Testing locally
 

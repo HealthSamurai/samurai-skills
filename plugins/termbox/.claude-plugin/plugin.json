@@ -1,7 +1,7 @@
 {
   "name": "termbox",
   "description": "Termbox FHIR terminology server — run locally, load and update terminologies, query codes via FHIR API or MCP",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Health Samurai",
     "url": "https://health-samurai.io"

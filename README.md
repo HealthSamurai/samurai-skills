@@ -111,7 +111,7 @@ plugins/
         ├── hs-search/SKILL.md
         └── termbox/
             ├── SKILL.md
-            └── references/         # Copied from the Termbox docs by scripts/sync_termbox_skill.py
+            └── references/         # Step-by-step prompts for each Termbox task
 template/
 └── SKILL.md                            # Template for new skills
 ```

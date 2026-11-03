@@ -16,7 +16,7 @@ Termbox is Health Samurai's FHIR terminology server. This skill has a step-by-st
 ## Workflow
 
 1. Pick the prompt for the task from the table below.
-2. Read it and follow every step in order. The prompts are self-contained, so don't use other Termbox docs pages, `llms.txt` or memory instead.
+2. Read it and follow every step in order. The prompts are self-contained and written for agents, so use them instead of the Termbox documentation pages, `llms.txt` or memory.
 3. Finish only when the prompt's verify or wait step passes, then report as the prompt describes.
 
 | Task | Prompt |
@@ -31,8 +31,6 @@ Termbox is Health Samurai's FHIR terminology server. This skill has a step-by-st
 | Connect an agent to the hosted MCP server | [references/connect-mcp.md](references/connect-mcp.md) |
 | Diagnose a problem | [references/troubleshoot.md](references/troubleshoot.md) |
 | MCP server reference: tools, examples and limits | [references/mcp.md](references/mcp.md) |
-
-The prompts are copied from the Termbox docs at https://www.health-samurai.io/docs/termbox/agents. Each one is also published as `.md` at `https://www.health-samurai.io/docs/termbox/agents/<name>.md`. If a reference file seems out of date, fetch that version instead.
 
 ## Rules
 
