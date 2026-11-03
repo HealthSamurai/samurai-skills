@@ -21,9 +21,12 @@ plugins/
 ├── atomic-generate-types/
 │   ├── .claude-plugin/plugin.json
 │   └── skills/atomic-generate-types/SKILL.md
-└── hs-search/
+├── hs-search/
+│   ├── .claude-plugin/plugin.json
+│   └── skills/hs-search/SKILL.md
+└── termbox/
     ├── .claude-plugin/plugin.json
-    └── skills/hs-search/SKILL.md
+    └── skills/termbox/SKILL.md
 ```
 
 ## Version bumps
@@ -36,6 +39,14 @@ After changing any SKILL.md, bump `version` in `plugins/samurai-skills/.claude-p
 2. Use `template/SKILL.md` as a starting point
 3. Bump plugin version in `plugins/samurai-skills/.claude-plugin/plugin.json`
 4. Skills are auto-discovered from `skills/` — no need to register them anywhere
+
+## Termbox skill
+
+`termbox/references/*.md` are copies of the Termbox agent prompts and MCP page, which are maintained in the `termbox-docs` repo. Don't edit them here. After the docs change, refresh both copies and bump the versions:
+
+```bash
+python3 scripts/sync_termbox_skill.py
+```
 
 ## Testing locally
 
@@ -59,4 +70,5 @@ claude plugin install aidbox@samurai-skills
 claude plugin install aidbox-sql-on-fhir@samurai-skills
 claude plugin install atomic-generate-types@samurai-skills
 claude plugin install hs-search@samurai-skills
+claude plugin install termbox@samurai-skills
 ```
